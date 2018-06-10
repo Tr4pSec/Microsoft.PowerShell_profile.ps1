@@ -6,7 +6,6 @@ $shell.ForegroundColor = “Cyan”
 function Get-Excuse {
     (Invoke-WebRequest http://pages.cs.wisc.edu/~ballard/bofh/excuses -OutVariable excuses).content.split([Environment]::NewLine)[(get-random $excuses.content.split([Environment]::NewLine).count)]
 }
-f
 function get-dice {
 $terning = get-random -Maximum 6 -Minimum 1
 write-host $dice
