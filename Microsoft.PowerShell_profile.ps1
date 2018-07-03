@@ -1,10 +1,12 @@
-set-location C:\
+﻿set-location C:\
 $shell = $host.UI.RawUI
 $shell.WindowTitle = “Tr4pSec”
 $shell.BackgroundColor = “Black”
 $shell.ForegroundColor = “Cyan”
 function Get-Excuse {
     (Invoke-WebRequest http://pages.cs.wisc.edu/~ballard/bofh/excuses -OutVariable excuses).content.split([Environment]::NewLine)[(get-random $excuses.content.split([Environment]::NewLine).count)]
+    #If you are having issues in Windows 10 use:
+    #(Invoke-WebRequest -UseBasicParsing http://pages.cs.wisc.edu/~ballard/bofh/excuses -OutVariable excuses).content.split([Environment]::NewLine)[(get-random $excuses.content.split([Environment]::NewLine).count)]
 }
 function get-dice {
 $dice = get-random -Maximum 6 -Minimum 1
