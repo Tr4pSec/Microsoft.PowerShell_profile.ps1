@@ -1,11 +1,9 @@
 set-location C:\
-Import-Module PSConsoleTheme
-Set-ConsoleTheme 'Redmond'
 clear-host
 
 Function prompt {
 
-    if ($env:userdomain -AND $env:username) {
+  <#  if ($env:userdomain -AND $env:username) {
         $me = "$($env:userdomain)\$($env:username)"
     }
     elseif ($env:LOGNAME) {
@@ -14,8 +12,8 @@ Function prompt {
     else {
         #last resort
         $me = "PSUser"
-    }
-    
+    } #>
+    $me = "Tr4p"
 
     #define lines of text to include in the box
     $text1 = "[$me] $($executionContext.SessionState.Path.CurrentLocation)"
@@ -65,4 +63,17 @@ Function prompt {
     " v$($ver) PS$('>' * ($nestedPromptLevel + 1)) "
 
 }
- 
+
+function Get-PSConfEU {
+(irm http://powershell.fun )
+}
+
+function Disable-AutoProxy
+{
+	$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections'
+	
+	$data = (Get-ItemProperty -Path $key -Name DefaultConnectionSettings).DefaultConnectionSettings
+	$data[8] = 1
+	Set-ItemProperty -Path $key -Name DefaultConnectionSettings -Value $data
+}
+clear-host
